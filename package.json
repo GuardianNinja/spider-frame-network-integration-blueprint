@@ -1,0 +1,14 @@
+{
+  "name": "spider-frame-network-integration-blueprint",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node src/examples/demo.ts"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.0"
+  }
+}
