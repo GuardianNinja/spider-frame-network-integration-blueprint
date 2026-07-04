@@ -39,6 +39,66 @@ Packet schema is formalized in `src/protocol/packetSchema.ts`.
 - `SFN_OPERATION_REQUEST`
 - `SFN_OPERATION_RESPONSE`
 - `HEARTBEAT`
+- `CTS_MEMORY_CHALLENGE`
+- `CTS_SEQUENCE_VALIDATION`
+- `CTS_OPERATOR_READINESS`
+
+## CTS Packet Payloads
+
+CTS packet payload types are defined in `src/training/cognitiveTraining.ts`.
+
+### `CTS_MEMORY_CHALLENGE` (`CTSMemoryChallengePayload`)
+
+Issued when a training session presents a credential-sequence challenge to a participant.
+
+```json
+{
+  "packetType": "CTS_MEMORY_CHALLENGE",
+  "payload": {
+    "sessionId": "cts-session-001",
+    "userTier": "cadet",
+    "trainingLayer": 2,
+    "challengeSequence": ["step-A", "step-B", "step-C"],
+    "timeLimitMs": 30000
+  }
+}
+```
+
+### `CTS_SEQUENCE_VALIDATION` (`CTSSequenceValidationPayload`)
+
+Emitted after a participant submits a sequence response for evaluation.
+
+```json
+{
+  "packetType": "CTS_SEQUENCE_VALIDATION",
+  "payload": {
+    "sessionId": "cts-session-001",
+    "userTier": "cadet",
+    "trainingLayer": 2,
+    "submittedSequence": ["step-A", "step-B", "step-C"],
+    "elapsedMs": 18400,
+    "result": "PASS"
+  }
+}
+```
+
+### `CTS_OPERATOR_READINESS` (`CTSOperatorReadinessPayload`)
+
+Emitted at the end of an `OPERATOR_CONDITIONING` phase to report readiness assessment.
+
+```json
+{
+  "packetType": "CTS_OPERATOR_READINESS",
+  "payload": {
+    "sessionId": "cts-session-001",
+    "userTier": "industry",
+    "trainingLayer": 3,
+    "operatorReadinessScore": 87,
+    "phase": "OPERATOR_CONDITIONING",
+    "result": "PASS"
+  }
+}
+```
 
 ## Orbit-Aware Fields
 

@@ -39,3 +39,27 @@ Recommended integration events:
 `createHeartbeat(...)` provides a consistent heartbeat payload shape and guards
 against negative uptime in clock-skew situations.
 
+## CTS Telemetry Events
+
+`CTSTelemetryEvent` (defined in `src/training/cognitiveTraining.ts`) captures
+cognitive performance data emitted during CTS training sessions.
+
+Fields:
+
+- `sessionId` — training session identifier
+- `userTier` — participant tier (`civilian`, `cadet`, `industry`)
+- `trainingLayer` — active layer at the time of the event (`1`–`4`)
+- `phase` — current training phase (`INITIATION`, `CREDENTIAL_RECALL`, etc.)
+- `recallAccuracy` (optional) — fraction of correctly recalled credential steps (`0.0`–`1.0`)
+- `sequenceTimingMs` (optional) — elapsed time for the sequence execution phase in milliseconds
+- `operatorReadinessScore` (optional) — composite operator readiness score (`0`–`100`)
+- `result` — evaluation outcome (`PASS`, `FAIL`, `PARTIAL`)
+
+Recommended metric names for CTS telemetry points:
+
+- `cts_recall_accuracy` (gauge, unit: fraction)
+- `cts_sequence_timing_ms` (histogram, unit: ms)
+- `cts_operator_readiness_score` (gauge, unit: score)
+- `cts_session_pass_total` (counter)
+- `cts_session_fail_total` (counter)
+

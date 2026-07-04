@@ -36,6 +36,7 @@ npm run start
 - Integration test scenarios: `/docs/integration-test-scenarios.md`
 - Failure mode matrix: `/docs/failure-mode-matrix.md`
 - Operational telemetry layer: `/docs/operational-telemetry-layer.md`
+- **Cognitive Training Specification 1.0**: `/docs/cognitive-training-spec.md`
 
 Credential utilities are implemented in:
 
@@ -46,3 +47,7 @@ Schema and telemetry scaffolding are implemented in:
 
 - `src/protocol/packetSchema.ts`
 - `src/telemetry/operationalTelemetry.ts`
+
+Cognitive Training System (CTS) scaffolding is implemented in:
+
+- `src/training/cognitiveTraining.ts`
