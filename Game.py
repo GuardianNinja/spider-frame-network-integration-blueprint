@@ -5,7 +5,7 @@ from engine.companion import Companion
 from engine.mercy import MercyEngine
 from engine.world import World
 from engine.bike import MorphBike
-from galaxy_editor_screen import GalaxyEditorScreen
+from engine.galaxy_editor_screen import GalaxyEditorScreen
 
 WIDTH, HEIGHT = 1280, 720
 
