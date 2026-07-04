@@ -1,6 +1,8 @@
 import { createHmac, timingSafeEqual } from 'crypto';
 import { parseIdentityToken } from '../parser/identityParser';
+import { OrbitBand } from '../model/Identity';
 import { Permission } from './policyEngine';
+import { resolveOrbitBandFromScale } from './contextResolver';
 
 export interface CredentialTokenHeader {
   alg: 'HS256';
@@ -14,6 +16,7 @@ export interface CredentialTokenPayload {
   jti: string;
   tokenRaw: string;
   scale: 'G' | 'N' | 'L';
+  orbit: OrbitBand;
   state: string;
   domain: 'GO' | 'AO' | 'SO';
   facility: string;
@@ -96,6 +99,7 @@ export function issueCredentialToken(
     jti: `ct-${iat}-${token.state}-${token.facility}`,
     tokenRaw: rawToken,
     scale: token.scale,
+    orbit: resolveOrbitBandFromScale(token.scale),
     state: token.state,
     domain: token.domain,
     facility: token.facility,
@@ -155,4 +159,3 @@ export function verifyCredentialToken(
     };
   }
 }
-

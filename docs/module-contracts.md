@@ -17,6 +17,7 @@ This document defines module-level guarantees for the integration blueprint.
 - Guarantees context fields required for downstream routing:
   `scalePartition`, `statePartition`, `domainPartition`, `facilityPartition`,
   and `missionKey`.
+- Guarantees derived orbit awareness (`orbitBand`, `orbitPartition`) from token scale.
 
 ## `src/auth/policyEngine.ts`
 
@@ -25,6 +26,8 @@ This document defines module-level guarantees for the integration blueprint.
 - Guarantees explicit reason strings for denials.
 - Guarantees baseline mission/domain constraints for SFN, TRACON, launch
   windows, and local/national/global access checks.
+- Guarantees optional orbit compatibility hooks (`requiredOrbit`, `compatibleOrbits`)
+  are evaluated before permission-specific allow logic.
 
 ## `src/auth/credentialLayer.ts`
 
@@ -38,11 +41,13 @@ This document defines module-level guarantees for the integration blueprint.
 - Guarantees JWT-like compact token format:
   `base64url(header).base64url(payload).hex_signature`.
 - Guarantees payload includes FAAO route attributes + scopes + validity window.
+- Guarantees payload includes derived `orbit` field for orbit-aware integrations.
 - Guarantees token signature verification uses timing-safe comparison.
 
 ## `src/protocol/packetSchema.ts`
 
 - Guarantees typed packet contract for integration traffic and route binding.
+- Guarantees packet route and auth context support typed orbit compatibility fields.
 - Guarantees JSON schema constant for cross-service validation alignment.
 - Guarantees binary header contract for future framed transport support.
 
@@ -57,4 +62,3 @@ This document defines module-level guarantees for the integration blueprint.
 - Guarantees a common contract for logs, metrics, and heartbeat signals.
 - Guarantees heartbeat uptime is monotonic and never negative.
 - Guarantees in-memory collector preserves emitted telemetry in call order.
-

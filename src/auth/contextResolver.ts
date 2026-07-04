@@ -1,4 +1,4 @@
-import { IdentityToken } from '../model/Identity';
+import { IdentityToken, OrbitBand, Scale } from '../model/Identity';
 
 export interface OperationalContext {
   scalePartition: string;   // e.g. "GLOBAL", "NATIONAL-US", "LOCAL-FL-CCC"
@@ -6,6 +6,14 @@ export interface OperationalContext {
   domainPartition: string;  // e.g. "AO", "SO"
   facilityPartition: string;// e.g. "MCO", "CCC"
   missionKey: string;       // e.g. "TRACON", "LAUNCHWINDOW", "SFN"
+  orbitPartition: string;   // e.g. "ORBIT-LEO", "ORBIT-MEO", "ORBIT-GEO"
+  orbitBand: OrbitBand;
+}
+
+export function resolveOrbitBandFromScale(scale: Scale): OrbitBand {
+  if (scale === 'L') return 'LEO';
+  if (scale === 'N') return 'MEO';
+  return 'GEO';
 }
 
 /**
@@ -22,11 +30,15 @@ export function resolveOperationalContext(
       ? 'NATIONAL-US'
       : `LOCAL-${token.state}-${token.facility}`;
 
+  const orbitBand = resolveOrbitBandFromScale(token.scale);
+
   return {
     scalePartition,
     statePartition: token.state,
     domainPartition: token.domain,
     facilityPartition: token.facility,
-    missionKey: token.mission
+    missionKey: token.mission,
+    orbitPartition: `ORBIT-${orbitBand}`,
+    orbitBand
   };
 }
