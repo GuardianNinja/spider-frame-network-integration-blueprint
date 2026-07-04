@@ -23,3 +23,13 @@ Run the demo:
 ```bash
 npm install
 npm run start
+```
+
+## New integration artifacts
+
+- Integration flow spec: `/docs/integration-flow-spec.md`
+- Security & credential layer spec: `/docs/security-credential-layer.md`
+
+Credential utilities are implemented in:
+
+- `src/auth/credentialLayer.ts`
