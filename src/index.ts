@@ -7,3 +7,4 @@ export * from './auth/credentialToken';
 export * from './sfn/sfnGateway';
 export * from './protocol/packetSchema';
 export * from './telemetry/operationalTelemetry';
+export * from './training/cognitiveTraining';

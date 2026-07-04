@@ -62,3 +62,12 @@ This document defines module-level guarantees for the integration blueprint.
 - Guarantees a common contract for logs, metrics, and heartbeat signals.
 - Guarantees heartbeat uptime is monotonic and never negative.
 - Guarantees in-memory collector preserves emitted telemetry in call order.
+
+## `src/training/cognitiveTraining.ts`
+
+- Guarantees typed CTS participant tier (`CTSUserTier`): `civilian`, `cadet`, `industry`.
+- Guarantees typed training layer range (`CTSTrainingLayer`): `1`–`4`.
+- Guarantees typed training phase sequence (`CTSTrainingPhase`) matches the CTS flow spec.
+- Guarantees typed payload contracts for `CTS_MEMORY_CHALLENGE`, `CTS_SEQUENCE_VALIDATION`,
+  and `CTS_OPERATOR_READINESS` packet types.
+- Guarantees `CTSTelemetryEvent` shape for cognitive performance metrics emitted by CTS modules.

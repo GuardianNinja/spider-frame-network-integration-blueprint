@@ -15,3 +15,7 @@
 | `policyEngine` | Unknown permission | Fallback branch | Deny request (`Unknown or unsupported permission.`). |
 | `sfnGateway` | Unauthorized project create | Policy decision denied | Throw error; do not mutate project store. |
 | `telemetry` | Heartbeat time skew/backward clock | `createHeartbeat` clamps uptime | Emit uptime floor `0`, preserving valid heartbeat format. |
+| `cognitiveTraining` | Recall failure — user cannot reproduce credential sequence | `CTSEvaluationResult === 'FAIL'` in `CTSSequenceValidationPayload` | Mark phase result `FAIL`; emit `CTSTelemetryEvent` with `recallAccuracy`; allow retry per layer policy. |
+| `cognitiveTraining` | Sequence error — submitted sequence does not match challenge | Sequence comparison in `CTS_SEQUENCE_VALIDATION` packet handler | Return `PARTIAL` or `FAIL` result; do not advance training layer until threshold is met. |
+| `cognitiveTraining` | Timing violation — sequence execution exceeds `timeLimitMs` | `elapsedMs > timeLimitMs` in `CTSMemoryChallengePayload` | Mark result `FAIL`; log `sequenceTimingMs` via `CTSTelemetryEvent`; Layer 4 stress mode may apply penalty. |
+| `cognitiveTraining` | Operator stress overload — Layer 4 readiness score below threshold | `operatorReadinessScore` below defined floor in `CTSOperatorReadinessPayload` | Mark `OPERATOR_CONDITIONING` phase `FAIL`; emit telemetry; block FAAO-tier advancement until remediation. |

@@ -9,7 +9,10 @@ export type PacketType =
   | 'POLICY_DECISION'
   | 'SFN_OPERATION_REQUEST'
   | 'SFN_OPERATION_RESPONSE'
-  | 'HEARTBEAT';
+  | 'HEARTBEAT'
+  | 'CTS_MEMORY_CHALLENGE'
+  | 'CTS_SEQUENCE_VALIDATION'
+  | 'CTS_OPERATOR_READINESS';
 
 export interface PacketRoute {
   scale: 'G' | 'N' | 'L';
@@ -68,7 +71,10 @@ export const integrationPacketJsonSchema = {
         'POLICY_DECISION',
         'SFN_OPERATION_REQUEST',
         'SFN_OPERATION_RESPONSE',
-        'HEARTBEAT'
+        'HEARTBEAT',
+        'CTS_MEMORY_CHALLENGE',
+        'CTS_SEQUENCE_VALIDATION',
+        'CTS_OPERATOR_READINESS'
       ]
     },
     createdAt: { type: 'string', format: 'date-time' },
