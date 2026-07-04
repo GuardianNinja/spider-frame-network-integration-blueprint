@@ -47,3 +47,16 @@ Text-only scenarios for current integration flow.
 - **When** permission not recognized by policy module is requested
 - **Then** decision is denied with unknown permission reason
 
+## Scenario 8 — Invalid Token Rejected During Credential Token Issuance
+
+- **Given** malformed identity token input (wrong segment count)
+- **When** `issueCredentialToken(...)` is called
+- **Then** issuance fails by propagating parse error
+- **And** no credential token is produced
+
+## Scenario 9 — Duplicate Scope Inputs Are Canonicalized
+
+- **Given** a valid identity token and duplicated input scopes
+- **When** `issueCredentialToken(...)` creates a payload
+- **Then** payload scopes include each permission once only
+- **And** resulting token remains verifiable with shared secret
