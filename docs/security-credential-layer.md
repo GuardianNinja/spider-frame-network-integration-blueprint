@@ -39,3 +39,15 @@ Use `authorizeCredentialedRequest(rawToken, credential, requestedPermission, sha
 4. Parse token, resolve context, and apply policy engine rules.
 
 This keeps credential checks and policy decisions layered, explicit, and reusable.
+
+## Tokenized Credential Format
+
+In addition to `CredentialEnvelope`, the repository now includes a compact
+JWT-like credential token format in `src/auth/credentialToken.ts`.
+
+- Issuance: `issueCredentialToken(...)`
+- Verification: `verifyCredentialToken(...)`
+
+The token encodes FAAO route attributes (`scale`, `state`, `domain`,
+`facility`, `mission`) plus scopes and expiry, and signs the header/payload
+with HMAC-SHA256.

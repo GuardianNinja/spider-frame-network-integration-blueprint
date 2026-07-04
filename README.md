@@ -29,7 +29,19 @@ npm run start
 
 - Integration flow spec: `/docs/integration-flow-spec.md`
 - Security & credential layer spec: `/docs/security-credential-layer.md`
+- Module contracts: `/docs/module-contracts.md`
+- Packet schema: `/docs/packet-schema.md`
+- Credential token format: `/docs/credential-token-format.md`
+- Integration test scenarios: `/docs/integration-test-scenarios.md`
+- Failure mode matrix: `/docs/failure-mode-matrix.md`
+- Operational telemetry layer: `/docs/operational-telemetry-layer.md`
 
 Credential utilities are implemented in:
 
 - `src/auth/credentialLayer.ts`
+- `src/auth/credentialToken.ts`
+
+Schema and telemetry scaffolding are implemented in:
+
+- `src/protocol/packetSchema.ts`
+- `src/telemetry/operationalTelemetry.ts`
