@@ -56,6 +56,3 @@ export function listSfnProjectsForUser(
       p.facility === token.facility
   );
 }
-
-
----
