@@ -136,7 +136,7 @@ Training exercises use the same compact token format defined in `docs/credential
 
 ### 5.4 Telemetry Layer
 
-CTS emits `CTSTelemetryEvent` records (see `src/telemetry/operationalTelemetry.ts`):
+CTS emits `CTSTelemetryEvent` records (see `src/training/cognitiveTraining.ts`):
 
 - `recallAccuracy` — fraction of correctly recalled credential steps.
 - `sequenceTimingMs` — elapsed time for sequence execution phase.
