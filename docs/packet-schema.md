@@ -12,6 +12,7 @@ Packet schema is formalized in `src/protocol/packetSchema.ts`.
   "createdAt": "2026-07-04T17:00:00.000Z",
   "route": {
     "scale": "L",
+    "orbit": "LEO",
     "state": "FL",
     "domain": "SO",
     "facility": "CCC",
@@ -19,7 +20,9 @@ Packet schema is formalized in `src/protocol/packetSchema.ts`.
   },
   "auth": {
     "credentialToken": "base64url(header).base64url(payload).signature",
-    "scopes": ["ACCESS_SFN_SANDBOX"]
+    "scopes": ["ACCESS_SFN_SANDBOX"],
+    "requiredOrbit": "LEO",
+    "compatibleOrbits": ["LEO", "MEO"]
   },
   "payload": {
     "operation": "createProject",
@@ -37,6 +40,12 @@ Packet schema is formalized in `src/protocol/packetSchema.ts`.
 - `SFN_OPERATION_RESPONSE`
 - `HEARTBEAT`
 
+## Orbit-Aware Fields
+
+- `route.orbit`: typed orbit context (`LEO`, `MEO`, `GEO`).
+- `auth.requiredOrbit` (optional): strict orbit requirement for policy hook.
+- `auth.compatibleOrbits` (optional): allowed orbit set for policy hook.
+
 ## Binary Header Contract
 
 For framed binary transport, the repository defines a minimal header contract:
@@ -47,4 +56,3 @@ For framed binary transport, the repository defines a minimal header contract:
 - `flags` (bit field)
 
 This enables future binary adapters without changing logical packet semantics.
-

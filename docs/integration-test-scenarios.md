@@ -60,3 +60,10 @@ Text-only scenarios for current integration flow.
 - **When** `issueCredentialToken(...)` creates a payload
 - **Then** payload scopes include each permission once only
 - **And** resulting token remains verifiable with shared secret
+
+## Scenario 10 — Orbit Compatibility Deny
+
+- **Given** a valid `L-*` token (derived `LEO`) and resolved context
+- **When** policy is evaluated with `requiredOrbit: "GEO"`
+- **Then** policy denies with an orbit mismatch reason
+- **And** no downstream service action is executed

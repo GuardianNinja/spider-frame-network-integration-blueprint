@@ -1,5 +1,6 @@
 import { IdentityToken } from '../model/Identity';
 import { OperationalContext } from './contextResolver';
+import { OrbitBand } from '../model/Identity';
 
 export type Permission =
   | 'READ_LOCAL_SYSTEMS'
@@ -15,6 +16,11 @@ export interface PolicyDecision {
   reason?: string;
 }
 
+export interface OrbitCompatibilityConstraint {
+  requiredOrbit?: OrbitBand;
+  compatibleOrbits?: OrbitBand[];
+}
+
 /**
  * Very simple policy engine stub.
  * In a real system, this would query policy stores, RBAC, ABAC, etc.
@@ -22,8 +28,26 @@ export interface PolicyDecision {
 export function evaluatePermission(
   token: IdentityToken,
   context: OperationalContext,
-  permission: Permission
+  permission: Permission,
+  orbitConstraint?: OrbitCompatibilityConstraint
 ): PolicyDecision {
+  if (orbitConstraint?.requiredOrbit && context.orbitBand !== orbitConstraint.requiredOrbit) {
+    return {
+      allowed: false,
+      reason: `Orbit mismatch: required ${orbitConstraint.requiredOrbit}, got ${context.orbitBand}.`
+    };
+  }
+
+  if (
+    orbitConstraint?.compatibleOrbits &&
+    !orbitConstraint.compatibleOrbits.includes(context.orbitBand)
+  ) {
+    return {
+      allowed: false,
+      reason: `Orbit ${context.orbitBand} is not in compatible set: ${orbitConstraint.compatibleOrbits.join(', ')}.`
+    };
+  }
+
   // Example: SFN sandbox is only accessible for Local + SO + mission=SFN
   if (permission === 'ACCESS_SFN_SANDBOX') {
     if (token.isLocal && token.domain === 'SO' && token.mission === 'SFN') {

@@ -22,6 +22,7 @@ Example:
 
 - Resolve routing partitions with `resolveOperationalContext(...)`.
 - Output determines scale/state/domain/facility/mission partitions used by downstream services.
+- Orbit awareness is derived into context (`orbitBand`, `orbitPartition`) for LEO/MEO/GEO compatibility checks.
 
 ## 4. Credential Validation Layer
 
@@ -33,6 +34,7 @@ Example:
 
 - Evaluate permission with `evaluatePermission(...)`.
 - Current policy model enforces mission/domain/scale restrictions (e.g., SFN requires `L-*` + `SO` + `SFN`).
+- Orbit compatibility constraints can be applied via policy hooks (`requiredOrbit` / `compatibleOrbits`).
 
 ## 6. Service Action
 
@@ -44,6 +46,7 @@ Example:
 - Module contracts: `/docs/module-contracts.md`
 - Packet schema: `/docs/packet-schema.md`
 - Credential token format: `/docs/credential-token-format.md`
+- Multi-orbit compatibility spec: `/docs/multi-orbit-compatibility-spec.md`
 - Integration test scenarios: `/docs/integration-test-scenarios.md`
 - Failure mode matrix: `/docs/failure-mode-matrix.md`
 - Operational telemetry layer: `/docs/operational-telemetry-layer.md`

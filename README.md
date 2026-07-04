@@ -32,6 +32,7 @@ npm run start
 - Module contracts: `/docs/module-contracts.md`
 - Packet schema: `/docs/packet-schema.md`
 - Credential token format: `/docs/credential-token-format.md`
+- Multi-orbit compatibility spec: `/docs/multi-orbit-compatibility-spec.md`
 - Integration test scenarios: `/docs/integration-test-scenarios.md`
 - Failure mode matrix: `/docs/failure-mode-matrix.md`
 - Operational telemetry layer: `/docs/operational-telemetry-layer.md`

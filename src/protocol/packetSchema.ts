@@ -1,4 +1,5 @@
 import { Permission } from '../auth/policyEngine';
+import { OrbitBand } from '../model/Identity';
 
 export type PacketVersion = '1.0';
 
@@ -12,6 +13,7 @@ export type PacketType =
 
 export interface PacketRoute {
   scale: 'G' | 'N' | 'L';
+  orbit: OrbitBand;
   state: string;
   domain: 'GO' | 'AO' | 'SO';
   facility: string;
@@ -21,6 +23,8 @@ export interface PacketRoute {
 export interface PacketAuthContext {
   credentialToken: string;
   scopes: Permission[];
+  requiredOrbit?: OrbitBand;
+  compatibleOrbits?: OrbitBand[];
 }
 
 export interface IntegrationPacket<TPayload = Record<string, unknown>> {
@@ -70,9 +74,10 @@ export const integrationPacketJsonSchema = {
     createdAt: { type: 'string', format: 'date-time' },
     route: {
       type: 'object',
-      required: ['scale', 'state', 'domain', 'facility', 'mission'],
+      required: ['scale', 'orbit', 'state', 'domain', 'facility', 'mission'],
       properties: {
         scale: { type: 'string', enum: ['G', 'N', 'L'] },
+        orbit: { type: 'string', enum: ['LEO', 'MEO', 'GEO'] },
         state: { type: 'string', minLength: 2 },
         domain: { type: 'string', enum: ['GO', 'AO', 'SO'] },
         facility: { type: 'string', minLength: 1 },
@@ -88,6 +93,12 @@ export const integrationPacketJsonSchema = {
           type: 'array',
           items: { type: 'string' },
           minItems: 1
+        },
+        requiredOrbit: { type: 'string', enum: ['LEO', 'MEO', 'GEO'] },
+        compatibleOrbits: {
+          type: 'array',
+          items: { type: 'string', enum: ['LEO', 'MEO', 'GEO'] },
+          minItems: 1
         }
       }
     },
@@ -98,4 +109,3 @@ export const integrationPacketJsonSchema = {
   },
   additionalProperties: false
 } as const;
-
