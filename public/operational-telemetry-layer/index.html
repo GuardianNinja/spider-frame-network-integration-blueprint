@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operational Telemetry Layer</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+<header><div class="header-wrap"><h1>Operational Telemetry Layer</h1><p class="meta">Heartbeat, logs, metrics, and alerts for integration and CTS observability.</p><nav><a class="nav-pill" href="../">Overview</a><a class="nav-pill" href="#signals">Heartbeat</a><a class="nav-pill" href="#logs">Log Channels</a><a class="nav-pill" href="#alerts">Alert Thresholds</a></nav></div></header>
+<main>
+  <section><h2>Telemetry Philosophy</h2><p>Telemetry provides ordered, structured signals for authorization, routing, and training outcomes so operators can audit behavior and respond quickly.</p></section>
+  <section id="signals"><h2>Heartbeat Signals</h2><p>Each module reports status (<code>UP</code>, <code>DEGRADED</code>, <code>DOWN</code>) with monotonic uptime safeguards to avoid invalid heartbeat states.</p></section>
+  <section id="logs"><h2>Log Channels</h2><ul><li>Credential issued/verified/denied events</li><li>Policy allow/deny decisions</li><li>SFN operation attempts and outcomes</li></ul></section>
+  <section><h2>Metrics</h2><p>Metric points support counters, gauges, and latency series such as authorization outcomes, credential verification latency, and CTS readiness metrics.</p></section>
+  <section><h2>Status Packets</h2><p>Status and heartbeat packet payloads can be emitted as standard integration packets for cross-service observability pipelines.</p></section>
+  <section id="alerts"><h2>Alert Thresholds</h2><p>Alerting focuses on authorization failures, degraded heartbeat states, and CTS readiness anomalies that exceed operational thresholds.</p></section>
+  <section><h2>Failure Integration</h2><p>Failure modes are mapped to telemetry triggers so containment and recovery actions can be automated and operator-visible.</p><h3>Guided Links</h3><ul><li><a href="../failure-mode-matrix/">Failure Mode Matrix</a></li><li><a href="../packet-schema/">Packet Schema</a></li></ul></section>
+</main>
+</body>
+</html>

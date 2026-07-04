@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spider-Frame Overview</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+<header>
+  <div class="header-wrap">
+    <h1>Spider-Frame Overview</h1>
+    <p class="meta">Public architecture landing page for the Spider Frame Network Integration Blueprint.</p>
+    <nav>
+      <a class="nav-pill" href="#mission">Mission Statement</a>
+      <a class="nav-pill" href="#overview">System Overview</a>
+      <a class="nav-pill" href="#layers">Architecture Layers</a>
+      <a class="nav-pill" href="#faao">FAAO Alignment</a>
+      <a class="nav-pill" href="#unification">Civilian + Industry Unification</a>
+      <a class="nav-pill" href="#quick-links">Quick Links</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <section id="mission">
+    <h2>Mission Statement</h2>
+    <p>Spider-Frame provides a FAAO-style identity and routing blueprint for secure cross-domain operations across <code>GO</code>, <code>AO</code>, and <code>SO</code> environments, while keeping policy decisions explicit and auditable.</p>
+  </section>
+
+  <section id="overview">
+    <h2>System Overview</h2>
+    <p>The system processes identity tokens in the format <code>[SCALE]-[STATE]-[FULLNAME]-[DOMAIN]-[FACILITY]-[MISSION]</code>, resolves operational context, validates credentials, applies policy rules, and then executes approved service actions.</p>
+    <p>Orbit awareness (<code>LEO</code>, <code>MEO</code>, <code>GEO</code>) is integrated into context resolution, packet contracts, and policy hooks.</p>
+  </section>
+
+  <section id="layers">
+    <h2>Architecture Layers</h2>
+    <ul>
+      <li>Identity parsing and context resolution</li>
+      <li>Security and credential verification (including compact credential tokens)</li>
+      <li>Policy engine with mission/domain/scale and optional orbit constraints</li>
+      <li>Packet contracts and integration transport schemas</li>
+      <li>Operational telemetry and failure handling</li>
+      <li>Cognitive Training System (CTS) for civilian, cadet, and industry readiness</li>
+    </ul>
+  </section>
+
+  <section id="faao">
+    <h2>FAAO Alignment</h2>
+    <p>Spider-Frame mirrors FAAO-grade operational discipline with deterministic routing attributes, secure corridor enforcement, and closed-by-default authorization behavior for unsupported permissions.</p>
+  </section>
+
+  <section id="unification">
+    <h2>Civilian + Industry Unification</h2>
+    <p>The architecture unifies civilian learning, cadet development, and industry operator readiness using common credentialing logic, packet semantics, and telemetry-backed operational practices.</p>
+  </section>
+
+  <section id="quick-links">
+    <h2>Quick Links</h2>
+    <div class="grid-links">
+      <a class="card-link" href="./module-contracts/">Module Contracts</a>
+      <a class="card-link" href="./packet-schema/">Packet Schema</a>
+      <a class="card-link" href="./security-credential-layer/">Security &amp; Credential Layer</a>
+      <a class="card-link" href="./cognitive-training-spec/">Cognitive Training Spec</a>
+      <a class="card-link" href="./multi-orbit-compatibility/">Multi-Orbit Compatibility</a>
+      <a class="card-link" href="./operational-telemetry-layer/">Operational Telemetry Layer</a>
+      <a class="card-link" href="./failure-mode-matrix/">Failure Mode Matrix</a>
+      <a class="card-link" href="./integration-flow/">Integration Flow</a>
+    </div>
+    <h3>Guided Links</h3>
+    <ul>
+      <li><a href="./integration-flow/">Integration Flow</a></li>
+      <li><a href="./security-credential-layer/">Security Layer</a></li>
+      <li><a href="./cognitive-training-spec/">Cognitive Training Spec</a></li>
+    </ul>
+  </section>
+</main>
+</body>
+</html>

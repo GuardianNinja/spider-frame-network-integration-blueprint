@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module Contracts</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+<header><div class="header-wrap"><h1>Module Contracts</h1><p class="meta">Guaranteed behavior across parser, auth, policy, packet, telemetry, and training modules.</p><nav><a class="nav-pill" href="../">Overview</a><a class="nav-pill" href="#philosophy">Contract Philosophy</a><a class="nav-pill" href="#guarantees">Guarantees</a><a class="nav-pill" href="#dependencies">Dependencies</a><a class="nav-pill" href="#versioning">Versioning</a></nav></div></header>
+<main>
+  <section id="philosophy"><h2>Contract Philosophy</h2><p>Each module defines explicit guarantees so integration behavior remains deterministic, testable, and safe under policy and credential constraints.</p></section>
+  <section id="guarantees"><h2>Module Guarantees</h2><ul><li><strong>Parser + context</strong>: strict identity parsing and deterministic route partitions, including derived orbit awareness.</li><li><strong>Credential + token</strong>: HMAC integrity checks, expiry bounds, token binding, compact token verification.</li><li><strong>Policy engine</strong>: closed-by-default decisions with explicit denial reasons and optional orbit compatibility checks.</li><li><strong>Packet schema</strong>: typed packet route/auth contracts with JSON and binary header alignment.</li><li><strong>Telemetry + CTS</strong>: ordered event collection, heartbeat validity, and typed cognitive training telemetry contracts.</li></ul></section>
+  <section><h2>Module Expectations</h2><p>Upstream callers must provide valid identity tokens and request permissions that map to known policy rules. Downstream modules must preserve contract fields without implicit mutation.</p></section>
+  <section><h2>Module Refusal Conditions</h2><ul><li>Malformed identity token or unsupported scale/domain.</li><li>Invalid or expired credential signature.</li><li>Missing permission scope or unmet orbit compatibility constraints.</li><li>Unknown permission types (denied by fallback policy branch).</li></ul></section>
+  <section id="dependencies"><h2>Inter-Module Dependencies</h2><p>Flow dependency is parser → context → credential verification → policy evaluation → service action, with telemetry and failure handling spanning every stage.</p></section>
+  <section id="versioning"><h2>Versioning Strategy</h2><p>Contract changes are versioned through packet schema versions, token header <code>ver</code> markers, and documented module updates in repository specs.</p><h3>Guided Links</h3><ul><li><a href="../packet-schema/">Packet Schema</a></li><li><a href="../failure-mode-matrix/">Failure Matrix</a></li></ul></section>
+</main>
+</body>
+</html>

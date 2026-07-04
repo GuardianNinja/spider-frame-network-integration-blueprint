@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Failure Mode Matrix</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+<header><div class="header-wrap"><h1>Failure Mode Matrix</h1><p class="meta">Failure categories, containment behaviors, and recovery signals across Spider-Frame modules.</p><nav><a class="nav-pill" href="../">Overview</a><a class="nav-pill" href="#types">Failure Types</a><a class="nav-pill" href="#severity">Severity</a><a class="nav-pill" href="#recovery">Recovery Paths</a></nav></div></header>
+<main>
+  <section id="types"><h2>Failure Types</h2><ul><li>Identity parse and token-shape failures</li><li>Credential signature, expiry, and binding failures</li><li>Permission and orbit-compatibility denials</li><li>CTS recall, sequence, timing, and stress failures</li></ul></section>
+  <section id="severity"><h2>Severity Levels</h2><p>Failures are treated with fail-closed semantics for security-critical paths and graded operator actions for recoverable training scenarios.</p></section>
+  <section><h2>Containment Strategies</h2><ul><li>Stop request progression immediately on parse/auth failure.</li><li>Prevent unauthorized state mutation in downstream gateways.</li><li>Preserve explicit denial reasons for auditability.</li></ul></section>
+  <section id="recovery"><h2>Recovery Paths</h2><p>Recovery paths include credential re-issuance, corrected permission scopes, orbit-compliant rerouting, and CTS remediation retries based on phase outcome.</p></section>
+  <section><h2>Telemetry Triggers</h2><p>Each denial and degraded condition emits telemetry so operators can correlate failure source, impact scope, and remediation progress.</p></section>
+  <section><h2>Operator Notifications</h2><p>Operator-facing alerts prioritize mission-impacting failures and include module context plus explicit policy/credential reason codes.</p><h3>Guided Links</h3><ul><li><a href="../security-credential-layer/">Security Layer</a></li><li><a href="../operational-telemetry-layer/">Telemetry Layer</a></li></ul></section>
+</main>
+</body>
+</html>
