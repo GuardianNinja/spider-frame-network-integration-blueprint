@@ -38,3 +38,12 @@ Example:
 
 - If authorized, execute integration operation (for example `createSfnProject(...)`).
 - If denied, return a structured reason for auditability.
+
+## Related expansion artifacts
+
+- Module contracts: `/docs/module-contracts.md`
+- Packet schema: `/docs/packet-schema.md`
+- Credential token format: `/docs/credential-token-format.md`
+- Integration test scenarios: `/docs/integration-test-scenarios.md`
+- Failure mode matrix: `/docs/failure-mode-matrix.md`
+- Operational telemetry layer: `/docs/operational-telemetry-layer.md`

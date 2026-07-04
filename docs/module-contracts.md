@@ -1,0 +1,60 @@
+# Module Contracts
+
+This document defines module-level guarantees for the integration blueprint.
+
+## `src/parser/identityParser.ts`
+
+- Guarantees strict parsing of FAAO identity token format:
+  `[SCALE]-[STATE]-[FULLNAME]-[DOMAIN]-[FACILITY]-[MISSION]`.
+- Guarantees validation for supported `scale` (`G`/`N`/`L`) and `domain`
+  (`GO`/`AO`/`SO`).
+- Guarantees derived flags (`isGlobal`, `isNational`, `isLocal`) are coherent
+  with parsed scale.
+
+## `src/auth/contextResolver.ts`
+
+- Guarantees deterministic routing partitions from a valid `IdentityToken`.
+- Guarantees context fields required for downstream routing:
+  `scalePartition`, `statePartition`, `domainPartition`, `facilityPartition`,
+  and `missionKey`.
+
+## `src/auth/policyEngine.ts`
+
+- Guarantees a closed-by-default authorization decision (`allowed: false`)
+  for unsupported/unknown permissions.
+- Guarantees explicit reason strings for denials.
+- Guarantees baseline mission/domain constraints for SFN, TRACON, launch
+  windows, and local/national/global access checks.
+
+## `src/auth/credentialLayer.ts`
+
+- Guarantees credential issuance with deduplicated scopes and bounded TTL.
+- Guarantees HMAC-SHA256 credential integrity check and expiry validation.
+- Guarantees binding between presented identity token and credential tokenRaw.
+- Guarantees scope gate is evaluated before policy resolution.
+
+## `src/auth/credentialToken.ts`
+
+- Guarantees JWT-like compact token format:
+  `base64url(header).base64url(payload).hex_signature`.
+- Guarantees payload includes FAAO route attributes + scopes + validity window.
+- Guarantees token signature verification uses timing-safe comparison.
+
+## `src/protocol/packetSchema.ts`
+
+- Guarantees typed packet contract for integration traffic and route binding.
+- Guarantees JSON schema constant for cross-service validation alignment.
+- Guarantees binary header contract for future framed transport support.
+
+## `src/sfn/sfnGateway.ts`
+
+- Guarantees SFN project creation only when policy allows
+  `ACCESS_SFN_SANDBOX`.
+- Guarantees user project listing is restricted to owner+state+facility scope.
+
+## `src/telemetry/operationalTelemetry.ts`
+
+- Guarantees a common contract for logs, metrics, and heartbeat signals.
+- Guarantees heartbeat uptime is monotonic and never negative.
+- Guarantees in-memory collector preserves emitted telemetry in call order.
+

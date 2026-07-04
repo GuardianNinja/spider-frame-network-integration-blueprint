@@ -3,4 +3,7 @@ export * from './parser/identityParser';
 export * from './auth/contextResolver';
 export * from './auth/policyEngine';
 export * from './auth/credentialLayer';
+export * from './auth/credentialToken';
 export * from './sfn/sfnGateway';
+export * from './protocol/packetSchema';
+export * from './telemetry/operationalTelemetry';
