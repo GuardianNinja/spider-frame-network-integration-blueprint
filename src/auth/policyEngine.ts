@@ -83,7 +83,6 @@ export function evaluatePermission(
 
   if (permission === 'WRITE_LOCAL_SYSTEMS') {
     if (token.isLocal) {
-      // You could add role/clearance checks here
       return { allowed: true };
     }
     return {
@@ -94,6 +93,3 @@ export function evaluatePermission(
 
   return { allowed: false, reason: 'Unknown or unsupported permission.' };
 }
-
-
----
