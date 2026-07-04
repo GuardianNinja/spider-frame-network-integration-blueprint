@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multi-Orbit Compatibility</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+<header><div class="header-wrap"><h1>Multi-Orbit Compatibility</h1><p class="meta">LEO/MEO/GEO integration behavior for policy, packet routing, and operational flow.</p><nav><a class="nav-pill" href="../">Overview</a><a class="nav-pill" href="#profiles">Orbit Profiles</a><a class="nav-pill" href="#latency">Latency Windows</a><a class="nav-pill" href="#flow">Integration Flow</a></nav></div></header>
+<main>
+  <section id="profiles"><h2>Orbit Profiles</h2><ul><li><code>LEO</code> for local-scale mapping</li><li><code>MEO</code> for national-scale mapping</li><li><code>GEO</code> for global-scale mapping</li></ul></section>
+  <section id="latency"><h2>Latency Windows</h2><p>Orbit lanes introduce different timing expectations; policy and packet contracts can enforce orbit compatibility constraints before action execution.</p></section>
+  <section><h2>Packet Timing</h2><p>Packet route and auth fields carry orbit context for enforcement and replay-safe decision windows across distributed integration boundaries.</p></section>
+  <section><h2>Orbital Dance Lanes</h2><p>Operational lanes align orbit-aware routing with mission/facility context to keep deterministic traffic and avoid incompatible command paths.</p></section>
+  <section><h2>Safe Corridor Logic</h2><p><code>requiredOrbit</code> and <code>compatibleOrbits</code> hooks enforce secure-orbit corridors prior to permission-specific allow rules.</p></section>
+  <section id="flow"><h2>Multi-Orbit Integration Flow</h2><p>Identity parse → context resolution with derived orbit band → credential and scope validation → orbit-compatible policy check → service execution.</p><h3>Guided Links</h3><ul><li><a href="../integration-flow/">Integration Flow</a></li><li><a href="../operational-telemetry-layer/">Telemetry Layer</a></li></ul></section>
+</main>
+</body>
+</html>

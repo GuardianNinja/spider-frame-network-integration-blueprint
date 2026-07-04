@@ -51,3 +51,12 @@ Schema and telemetry scaffolding are implemented in:
 Cognitive Training System (CTS) scaffolding is implemented in:
 
 - `src/training/cognitiveTraining.ts`
+
+## Cloudflare Pages deployment
+
+This repository includes a static Cloudflare Pages site in `/public`:
+
+- Landing page: `/public/index.html`
+- Section pages: folder-based routes with `index.html` (for example `/public/module-contracts/index.html`)
+
+For Cloudflare Pages, publish the `public` directory as the build output for static hosting.

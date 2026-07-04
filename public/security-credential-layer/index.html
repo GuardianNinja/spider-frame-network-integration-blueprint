@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Security &amp; Credential Layer</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+<header><div class="header-wrap"><h1>Security &amp; Credential Layer</h1><p class="meta">Zero-trust credential validation, tokenization, and secure corridor policy gating.</p><nav><a class="nav-pill" href="../">Overview</a><a class="nav-pill" href="#zero-trust">Zero-Trust</a><a class="nav-pill" href="#tiers">Tier Model</a><a class="nav-pill" href="#token-format">Token Format</a><a class="nav-pill" href="#corridor">Secure Corridors</a></nav></div></header>
+<main>
+  <section id="zero-trust"><h2>Zero-Trust Model</h2><p>Credentialed requests are denied unless signature integrity, expiry checks, identity binding, scope checks, and policy rules all pass.</p></section>
+  <section><h2>Multi-Tenant Access</h2><p>Route attributes (<code>scale/state/domain/facility/mission</code>) and scopes constrain actions for tenant-isolated operations.</p></section>
+  <section id="tiers"><h2>Operator vs Civilian vs Cadet Tiers</h2><p>The credentialing model aligns with CTS tiers by enforcing role-appropriate scopes and mission routing boundaries while supporting progressive readiness.</p></section>
+  <section id="token-format"><h2>Token Format</h2><p>Credential tokens use compact format <code>base64url(header).base64url(payload).hex_signature</code> with HMAC-SHA256 signatures and route-aware payload claims.</p></section>
+  <section><h2>Expiration Logic</h2><p>Tokens and credential envelopes carry bounded validity windows. Expired credentials are rejected before policy evaluation.</p></section>
+  <section><h2>Revocation Logic</h2><p>Any signature mismatch, malformed token payload, or token-binding mismatch immediately invalidates request authorization.</p></section>
+  <section id="corridor"><h2>Secure Corridor Enforcement</h2><p>Policy decisions enforce mission and orbit corridor restrictions through permission constraints and optional orbit compatibility hooks.</p><h3>Guided Links</h3><ul><li><a href="../cognitive-training-spec/">Cognitive Training Spec</a></li><li><a href="../integration-flow/">Integration Flow</a></li></ul></section>
+</main>
+</body>
+</html>

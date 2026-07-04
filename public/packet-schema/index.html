@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Packet Schema</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+<header><div class="header-wrap"><h1>Packet Schema</h1><p class="meta">JSON/binary packet contracts for secure and orbit-aware integration traffic.</p><nav><a class="nav-pill" href="../">Overview</a><a class="nav-pill" href="#json">JSON Schema</a><a class="nav-pill" href="#binary">Binary Schema</a><a class="nav-pill" href="#timing">Orbit-Aware Timing Windows</a></nav></div></header>
+<main>
+  <section><h2>Packet Philosophy</h2><p>Packets provide a stable envelope for route, auth, and payload semantics so policy and service modules can interpret integration intent consistently.</p></section>
+  <section id="json"><h2>JSON Schema</h2><p><code>IntegrationPacket</code> includes required fields <code>version</code>, <code>packetId</code>, <code>packetType</code>, <code>createdAt</code>, <code>route</code>, <code>auth</code>, and <code>payload</code>.</p><p>Route fields include scale/state/domain/facility/mission with typed <code>route.orbit</code> values (<code>LEO</code>/<code>MEO</code>/<code>GEO</code>).</p></section>
+  <section id="binary"><h2>Binary Schema</h2><p>Framed transports use a minimal binary header contract: <code>version</code>, <code>packetType</code>, <code>payloadLengthBytes</code>, and <code>flags</code>.</p></section>
+  <section><h2>Required Fields</h2><ul><li>Route identity fields and packet metadata</li><li>Credential token and scope list in <code>auth</code></li><li>Payload object matching packet type contract</li></ul></section>
+  <section><h2>Optional Fields</h2><ul><li><code>auth.requiredOrbit</code> for strict orbit requirements</li><li><code>auth.compatibleOrbits</code> for allowed orbit sets</li><li>Packet-type-specific optional payload extensions</li></ul></section>
+  <section><h2>Versioning</h2><p>Current packet version is <code>1.0</code>. Additive changes are preferred; incompatible shape changes should increment packet and consumer contract versions together.</p></section>
+  <section id="timing"><h2>Orbit-Aware Timing Windows</h2><p>Orbit-aware checks align packet authorization with <code>requiredOrbit</code>/<code>compatibleOrbits</code> hooks and expected latency/coordination windows across LEO, MEO, and GEO paths.</p><h3>Guided Links</h3><ul><li><a href="../operational-telemetry-layer/">Telemetry Layer</a></li><li><a href="../security-credential-layer/#token-format">Credential Token Format</a> (Security page)</li></ul></section>
+</main>
+</body>
+</html>

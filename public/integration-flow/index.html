@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Integration Flow</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+<header><div class="header-wrap"><h1>Integration Flow</h1><p class="meta">Deterministic node-to-node operational sequence for identity, credentialing, policy, packet, and orbit-aware service actions.</p><nav><a class="nav-pill" href="../">Overview</a><a class="nav-pill" href="#logic">Node-to-Node Logic</a><a class="nav-pill" href="#credential">Credential Flow</a><a class="nav-pill" href="#orbit">Orbit-Aware Flow</a><a class="nav-pill" href="#failure">Failure Flow</a></nav></div></header>
+<main>
+  <section><h2>Flow Philosophy</h2><p>Integration is designed as a strict, auditable sequence where every gate is explicit and policy-denied paths terminate before side effects.</p></section>
+  <section id="logic"><h2>Node-to-Node Logic</h2><ol><li>Accept inbound identity token.</li><li>Parse and normalize token attributes.</li><li>Resolve operational context including orbit band.</li><li>Verify credential integrity and scope.</li><li>Run policy and orbit compatibility checks.</li><li>Execute authorized service action.</li></ol></section>
+  <section><h2>Sequence Diagrams</h2><p>Primary sequence: client → parser/context resolver → credential verifier → policy engine → service gateway, with telemetry and failure observers attached throughout.</p></section>
+  <section id="credential"><h2>Credential Flow</h2><p>Credential verification includes HMAC signature validation, expiration checks, token binding, and requested-permission scope gating.</p></section>
+  <section><h2>Packet Flow</h2><p>Traffic is carried via <code>IntegrationPacket</code> envelopes with route and auth context fields that preserve FAAO and orbit-aware semantics.</p></section>
+  <section id="orbit"><h2>Orbit-Aware Flow</h2><p>Orbit constraints (<code>requiredOrbit</code>/<code>compatibleOrbits</code>) are evaluated before permission-specific allow logic to keep mission corridors safe.</p></section>
+  <section id="failure"><h2>Failure Flow</h2><p>Any parse/auth/policy failure returns a structured denial reason, emits telemetry, and avoids downstream mutation.</p><h3>Guided Links</h3><ul><li><a href="../module-contracts/">Module Contracts</a></li><li><a href="../multi-orbit-compatibility/">Multi-Orbit Spec</a></li></ul></section>
+</main>
+</body>
+</html>
